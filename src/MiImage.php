@@ -39,15 +39,21 @@ class MiImage
                 $format = $modificationParameters['fm'];
             }
 
-            $items = explode('/', $file);
-            $folder = $items[sizeof($items) - 2];
-
             $tmpImageArr = (explode('.', $img));
             $ext = end($tmpImageArr);
             $image_name = basename($img, '.' . $ext);
             $cacheImage = $image_name . '-' . (($width) ? $width : 0) . 'x' . (($height) ? $height : 0) . $fit . $quality;
             $cacheImage = $cacheImage . '.' . $ext;
-            $newImage = 'images/cache/' . $folder . '/' . $cacheImage;
+
+            $items = explode('/', $file);
+            if (sizeof($items) > 1) {
+                $folder = $items[sizeof($items) - 2];
+                $newImage = 'images/cache/' . $folder . '/' . $cacheImage;
+            } else {
+                $folder = "";
+                $newImage = 'images/cache/' . $cacheImage;
+            }
+
 
             if (file_exists(storage_path($newImage))) {
                 return new BinaryFileResponse(storage_path($newImage), 200);
