@@ -82,7 +82,7 @@ class MiImage
                     ->modify(['w' => $width, 'h' => $height, 'fit' => $fit, 'q' => $quality, 'fm' => $format])
                     ->save(storage_path($newImage));
                 chmod(storage_path($newImage), 0777);
-                unlink($pathToImage);
+                //unlink($pathToImage);
 
                 return new BinaryFileResponse(storage_path($newImage), 200);
             }
