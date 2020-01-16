@@ -63,4 +63,4 @@ In modification parameter you can use
 
 ## Support us
 
-Mindinventory itself is a self-explanatory word. In fact, we have accumulated the best talents available in India, particularly from the eminent technical education institutes located at Ahmedabad in the western Indian region where headquarter is located. Please visit [our website](https://spatie.be/opensource).
+Mindinventory itself is a self-explanatory word. In fact, we have accumulated the best talents available in India, particularly from the eminent technical education institutes located at Ahmedabad in the western Indian region where headquarter is located. Please visit [our website](https://mindinventory.com).
