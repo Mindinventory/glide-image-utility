@@ -14,7 +14,7 @@ MiImage::createImage($ImagePath,['w'=> 50, 'h'=>100, 'fit'=>'crop']);
 You can install the package through Composer.
 
 ```bash
-composer require mi/mi-image-utility
+composer require mindinventory/glide-image-utility
 ```
 
 In Laravel 5.5 the service provider and facade will automatically get registered. In older versions of the framework just add the service provider and facade in `config/app.php` file:
