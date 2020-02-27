@@ -38,6 +38,10 @@ class MiImage
             if (isset($modificationParameters['fm']) && in_array($modificationParameters['fm'], ['jpg', 'pjpg', 'png', 'gif', 'webp'])) {
                 $format = $modificationParameters['fm'];
             }
+            $bg = '';
+            if (isset($modificationParameters['bg'])) {
+                $bg = $modificationParameters['bg'];
+            }
 
             $tmpImageArr = (explode('.', $img));
             $ext = end($tmpImageArr);
@@ -79,7 +83,7 @@ class MiImage
                 $pathToImage = storage_path('images/' . $img);
 
                 GlideImage::create($pathToImage)
-                    ->modify(['w' => $width, 'h' => $height, 'fit' => $fit, 'q' => $quality, 'fm' => $format])
+                    ->modify(['w' => $width, 'h' => $height, 'fit' => $fit, 'q' => $quality, 'fm' => $format, 'bg' => $bg])
                     ->save(storage_path($newImage));
                 chmod(storage_path($newImage), 0777);
                 unlink($pathToImage);
