@@ -6,7 +6,7 @@ This package provides an easy to use class to manipulate images. Using this pack
 Here's an example of how the package can be used:
 
 ```php
-MiImage::createImage($ImagePath,['w'=> 50, 'h'=>100, 'fit'=>'crop']);
+MiImage::createImage($ImagePath,['w'=> 50, 'h'=>100, 'fit'=>'crop', 'bg' => 'CCC']);
 ```
 
 ## Installation
@@ -50,7 +50,7 @@ return [
 Here's a quick example that shows how an image can be modified:
 
 ```php
-MiImage::createImage($pathToImage,['w'=> 50, 'h'=>50, 'fit'=>'crop']);
+MiImage::createImage($pathToImage,['w'=> 50, 'h'=>50, 'fit'=>'crop', 'bg' => 'CCC']);
 ```
 
 In modification parameter you can use 
@@ -59,6 +59,7 @@ In modification parameter you can use
     fit = Fit parameter [contain, max, fill, stretch, crop],
     q = Quality [Between 0 to 100],
     fm = Format [jpg, pjeg(progressive jpg), gif, webp]
+    bg = Background Color [For More Colors](https://glide.thephpleague.com/1.0/api/colors/)
     
 
 ## Support us

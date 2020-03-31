@@ -46,7 +46,7 @@ class MiImage
             $tmpImageArr = (explode('.', $img));
             $ext = end($tmpImageArr);
             $image_name = basename($img, '.' . $ext);
-            $cacheImage = $image_name . '-' . (($width) ? $width : 0) . 'x' . (($height) ? $height : 0) . $fit . $quality;
+            $cacheImage = $image_name . '-' . (($width) ? $width : 0) . 'x' . (($height) ? $height : 0) . $fit . $quality . $bg;
             $cacheImage = $cacheImage . '.' . $ext;
 
             $items = explode('/', $file);
