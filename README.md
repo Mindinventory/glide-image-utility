@@ -1,7 +1,7 @@
 # Glide Image Utility
 Easily convert images with Glide Image Utility
 
-This package provides an easy to use class to manipulate images. Using this package we can manipulate aws s3 bucket image too.
+This package provides an easy to use class to manipulate images. Using this package we can manipulate aws s3 bucket image also.
 
 Here's an example of how the package can be used:
 
@@ -39,7 +39,6 @@ The config file looks like this:
 <?php
 
 return [
-
     /* This is cache folder that create inside storage/images/cache folder */
     'cache_folder' => env('Cache_Folder', storage_path('images/cache')),
 ];
