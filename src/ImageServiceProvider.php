@@ -19,8 +19,6 @@ class ImageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/../config/mi-utility.php' => config_path('mi-utility.php')
-        ], 'config');
+
     }
 }
