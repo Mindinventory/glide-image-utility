@@ -1,66 +1,87 @@
-# Glide Image Utility
-Easily convert images with Glide Image Utility
+# Easily convert images with Glide Image Utility.
 
-This package provides an easy to use class to manipulate images. Using this package we can manipulate aws s3 bucket image also.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mindinventory/glide-image-utility.svg?style=flat-square)](https://packagist.org/packages/mindinventory/glide-image-utility)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mindinventory/glide-image-utility/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/mindinventory/glide-image-utility/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/mindinventory/glide-image-utility/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/mindinventory/glide-image-utility/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/mindinventory/glide-image-utility.svg?style=flat-square)](https://packagist.org/packages/mindinventory/glide-image-utility)
 
-Here's an example of how the package can be used:
-
-```php
-MiImage::createImage($ImagePath,['w'=> 50, 'h'=>100, 'fit'=>'crop', 'bg' => 'CCC']);
-```
+This package provides an easy-to-use class to manipulate images. Using this package we can manipulate aws s3 bucket image also.
 
 ## Installation
 
-You can install the package through Composer.
+You can install the package via composer:
 
 ```bash
 composer require mindinventory/glide-image-utility
 ```
 
-In Laravel 5.5 the service provider and facade will automatically get registered. In older versions of the framework just add the service provider and facade in `config/app.php` file:
-
-```php
-'providers' => [
-    ...
-    Mi\MiImageUtility\ImageServiceProvider::class,
-    ...
-];
-```
-
-You can publish the config file of the package using artisan.
+You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --provider="Mi\MiImageUtility\ImageServiceProvider" --tag=config
+php artisan vendor:publish --tag="glide-image-utility-config"
 ```
 
-The config file looks like this:
+This is the contents of the published config file:
+
 ```php
-
-<?php
-
 return [
-    /* This is cache folder that create inside storage/images/cache folder */
-    'cache_folder' => env('Cache_Folder', storage_path('images/cache')),
+
 ];
-
 ```
-## Usage 
 
-Here's a quick example that shows how an image can be modified:
+## Usage
 
 ```php
-MiImage::createImage($pathToImage,['w'=> 50, 'h'=>50, 'fit'=>'crop', 'bg' => 'CCC']);
+MiImage::createImage($ImagePath,['w'=> 50, 'h'=>100, 'fit'=>'crop', 'bg' => 'CCC']);
 ```
 
-In modification parameter you can use 
-    w = Width,
-    h = Height,
-    fit = Fit parameter [contain, max, fill, stretch, crop],
-    q = Quality [Between 0 to 100],
-    fm = Format [jpg, pjeg(progressive jpg), gif, webp]
-    bg = Background Color [For More Colors](https://glide.thephpleague.com/1.0/api/colors/)
-    
+### In modification parameter you can use
 
-## Support us
+**w** = Width,
 
-Mindinventory itself is a self-explanatory word. In fact, we have accumulated the best talents available in India, particularly from the eminent technical education institutes located at Ahmedabad in the western Indian region where headquarter is located. Please visit [our website](https://mindinventory.com).
+**h** = Height,
+
+**fit** = Fit parameter [contain, max, fill, stretch, crop],
+
+**q** = Quality [Between 0 to 100],
+
+**fm** = Format [jpg, pjeg(progressive jpg), gif, webp]
+
+**bg** = Background Color [For More Colors](https://glide.thephpleague.com/1.0/api/colors/)
+
+## Testing
+
+```bash
+composer test
+```
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Security Vulnerabilities
+
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+
+## Credits
+
+- [MindInventory](https://github.com/Mindinventory)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Let us know!
+If you use our open-source libraries in your project, please make sure to credit us and Give a star to [www.mindinventory.com](https://mindinventory.com/)
+
+
+![alt text](https://git.mindinventory.com/uploads/-/system/appearance/header_logo/1/mi-logo.png)
+
+<a href="https://www.mindinventory.com/contact-us.php?utm_source=gthb&utm_medium=repo&utm_campaign=npm-mi-image-resize" target="__blank">
+<img src="https://github.com/Sammindinventory/MindInventory/raw/main/hirebutton.png" width="203" height="43"  alt="app development">
+</a>

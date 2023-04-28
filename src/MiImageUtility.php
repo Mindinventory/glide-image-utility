@@ -2,19 +2,27 @@
 
 namespace Mi\MiImageUtility;
 
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Spatie\Glide\GlideImage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class MiImage
+class MiImageUtility
 {
-    public static function createImage($file, array $modificationParameters)
+    /***
+     * @param $file
+     * @param array $modificationParameters
+     * @return JsonResponse|BinaryFileResponse
+     */
+    public static function createImage($file, array $modificationParameters): BinaryFileResponse|JsonResponse
     {
+
         $info = pathinfo($file);
         $img = $info['basename'];
         $i = explode('.', $img);
 
-        if (!$img) {
+        if (!$img || !is_string($file)) {
             return response()->json(["data" => "Invalid Image"], Response::HTTP_NOT_FOUND);
         } else if ($i[count($i) - 1] == 'jpg' || $i[count($i) - 1] == 'png' || $i[count($i) - 1] == 'jpeg') {
 
@@ -49,35 +57,18 @@ class MiImage
             $cacheImage = $image_name . '-' . (($width) ? $width : 0) . 'x' . (($height) ? $height : 0) . $fit . $quality . $bg;
             $cacheImage = $cacheImage . '.' . $ext;
 
-            $items = explode('/', $file);
-            if (sizeof($items) > 1) {
-                $folder = $items[sizeof($items) - 2];
-                $newImage = 'images/cache/' . $folder . '/' . $cacheImage;
-            } else {
-                $folder = "";
-                $newImage = 'images/cache/' . $cacheImage;
-            }
-
+            $newImage = self::checkFolderAvailability($file,$cacheImage);
 
             if (file_exists(storage_path($newImage))) {
                 return new BinaryFileResponse(storage_path($newImage), 200);
             } else {
+                $files = storage_path('images/' . $info['basename']);
 
-                $contents = file_get_contents(storage_path('images/'.$file));
-                $image = storage_path('images');
-                if (!is_dir($image)) {
-                    mkdir($image, 0777, true);
-                    chmod($image, 0777);
-                }
-
-                $file = storage_path('images/' . $info['basename']);
-                file_put_contents($file, $contents);
-                chmod($file, 0777);
-
-                $imageFolder = storage_path('images/cache/' . $folder);
-                if (!is_dir($imageFolder)) {
-                    mkdir($imageFolder, 0777, true);
-                    chmod($imageFolder, 0777);
+                try {
+                    $contents = file_get_contents($file);
+                    file_put_contents($files, $contents);
+                }catch (Exception $e){
+                    return response()->json(["data" => "Invalid Image"], Response::HTTP_NOT_FOUND);
                 }
 
                 $pathToImage = storage_path('images/' . $img);
@@ -93,5 +84,29 @@ class MiImage
         } else {
             return response()->json(["data" => "Invalid Image"], Response::HTTP_NOT_FOUND);
         }
+    }
+
+    /***
+     * @param $file
+     * @param $cacheImage
+     * @return string
+     */
+    private static function checkFolderAvailability($file, $cacheImage): string
+    {
+        $path = parse_url($file, PHP_URL_PATH);
+        $items = array_filter(explode('/', $path),fn($val) => $val);
+        $folder = "";
+        $newImage = 'images/cache/' . $cacheImage;
+        if (count($items) > 2) {
+            $folder = $items[count($items) - 2];
+            $newImage = 'images/cache/' . $folder . '/' . $cacheImage;
+        }
+
+        $imageFolder = 'images/cache/' . $folder;
+        if (!is_dir(storage_path($imageFolder))) {
+            mkdir(storage_path($imageFolder), 0777, true);
+            chmod(storage_path($imageFolder), 0777);
+        }
+        return $newImage;
     }
 }
