@@ -82,6 +82,6 @@ If you use our open-source libraries in your project, please make sure to credit
 
 ![alt text](https://git.mindinventory.com/uploads/-/system/appearance/header_logo/1/mi-logo.png)
 
-<a href="https://www.mindinventory.com/contact-us.php?utm_source=gthb&utm_medium=repo&utm_campaign=npm-mi-image-resize" target="__blank">
+<a href="https://www.mindinventory.com/contact-us.php?utm_source=gthb&utm_medium=repo&utm_campaign=glide-image-utility" target="__blank">
 <img src="https://github.com/Sammindinventory/MindInventory/raw/main/hirebutton.png" width="203" height="43"  alt="app development">
 </a>
